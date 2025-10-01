@@ -78,3 +78,12 @@ body {
 .card-body {
   padding: 1rem;
 }
+.pasos-lista {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+}
+
+.paso-item {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
