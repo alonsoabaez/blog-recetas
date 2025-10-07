@@ -1,12 +1,33 @@
+"use client";
+
 export default function Header() {
+  const scrollToRecetas = () => {
+    const recetasSection = document.getElementById('todas-las-recetas');
+    if (recetasSection) {
+      recetasSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <header className="header">
-      <h1>🍳 Blog de Recetas</h1>
+      <div className="header-content">
+        <h1>🍳 Sabores del Mundo</h1>
+        <p className="header-subtitle">Descubre, cocina y disfruta</p>
+      </div>
       <nav>
         <ul className="nav">
           <li><a href="/">Inicio</a></li>
-          <li><a href="/recetas">Recetas</a></li>
-          <li><a href="/contacto">Contacto</a></li>
+          <li>
+            <button 
+              onClick={scrollToRecetas}
+              className="nav-button"
+            >
+              Recetas
+            </button>
+          </li>
         </ul>
       </nav>
     </header>

@@ -1,0 +1,159 @@
+[
+  {
+    "id": 1,
+    "titulo": "Pasta con Salsa de Tomate",
+    "imagen": "/assets/pasta.jpg",
+    "descripcion": "Una receta sencilla y deliciosa con tomates frescos y hierbas.",
+    "pasos": [
+      "Hervir la pasta en agua con sal durante 8 minutos.",
+      "Picar y triturar los tomates frescos.",
+      "Saltear el ajo en aceite de oliva y añadir los tomates.",
+      "Mezclar la pasta con la salsa y espolvorear orégano."
+    ]
+  },
+  {
+    "id": 2,
+    "titulo": "Tacos Mexicanos",
+    "imagen": "/assets/tacos.jpg",
+    "descripcion": "Tortillas rellenas de carne, verduras y guacamole.",
+    "pasos": [
+      "Preparar las tortillas.",
+      "Cocinar la carne con condimentos.",
+      "Picar verduras frescas.",
+      "Armar los tacos con guacamole y servir."
+    ]
+  },
+  {
+    "id": 3,
+    "titulo": "Pizza Margarita",
+    "imagen": "/assets/pizza.jpg",
+    "descripcion": "La clásica pizza italiana con tomate, mozzarella y albahaca.",
+    "pasos": [
+      "Preparar la masa de pizza.",
+      "Untar salsa de tomate.",
+      "Añadir mozzarella fresca.",
+      "Hornear y decorar con albahaca."
+    ]
+  },
+  {
+    "id": 4,
+    "titulo": "Ensalada César",
+    "imagen": "/assets/ensalada.jpg",
+    "descripcion": "Crujiente y deliciosa con aderezo casero.",
+    "pasos": [
+      "Lavar y cortar la lechuga.",
+      "Preparar el aderezo César.",
+      "Agregar pollo a la plancha y crutones.",
+      "Mezclar todo antes de servir."
+    ]
+  },
+  {
+    "id": 5,
+    "titulo": "Sopa de Verduras",
+    "imagen": "/assets/sopa.jpg",
+    "descripcion": "Ideal para días fríos, nutritiva y reconfortante.",
+    "pasos": [
+      "Cortar las verduras en trozos pequeños.",
+      "Saltear cebolla y ajo.",
+      "Agregar agua o caldo y cocinar 30 minutos.",
+      "Servir caliente."
+    ]
+  },
+  {
+    "id": 6,
+    "titulo": "Empanadas de Pino",
+    "imagen": "/assets/empanadas.jpg",
+    "descripcion": "Un clásico chileno con carne, cebolla, huevo y aceituna.",
+    "pasos": [
+      "Preparar el pino con carne molida y condimentos.",
+      "Rellenar la masa con pino, huevo y aceituna.",
+      "Cerrar y hornear hasta dorar.",
+      "Servir tibias."
+    ]
+  },
+  {
+    "id": 7,
+    "titulo": "Panqueques con Manjar",
+    "imagen": "/assets/panqueques.jpg",
+    "descripcion": "Un postre rápido y dulce, perfecto para la merienda.",
+    "pasos": [
+      "Preparar la mezcla con harina, leche y huevo.",
+      "Cocinar cada panqueque en sartén.",
+      "Rellenar con manjar y enrollar.",
+      "Espolvorear azúcar flor."
+    ]
+  },
+  {
+    "id": 8,
+    "titulo": "Cazuela de Vacuno",
+    "imagen": "/assets/cazuela.jpg",
+    "descripcion": "Plato tradicional chileno con carne, papa y zapallo.",
+    "pasos": [
+      "Sellar la carne en olla.",
+      "Agregar verduras y caldo.",
+      "Cocinar a fuego lento 45 minutos.",
+      "Servir con perejil fresco."
+    ]
+  },
+  {
+    "id": 9,
+    "titulo": "Brownies Caseros",
+    "imagen": "/assets/brownies.jpg",
+    "descripcion": "Suaves por dentro y crocantes por fuera.",
+    "pasos": [
+      "Derretir mantequilla con chocolate.",
+      "Agregar azúcar, huevos y harina.",
+      "Hornear 25 minutos a 180°C.",
+      "Dejar enfriar antes de cortar."
+    ]
+  },
+  {
+    "id": 10,
+    "titulo": "Sushi Rollo Tradicional",
+    "imagen": "/assets/sushi.jpg",
+    "descripcion": "Rollo japonés con arroz, alga nori y relleno de salmón.",
+    "pasos": [
+      "Preparar el arroz con vinagre y azúcar.",
+      "Colocar el alga sobre la esterilla.",
+      "Agregar el arroz y relleno.",
+      "Enrollar y cortar en piezas iguales."
+    ]
+  },
+  {
+    "id": 11,
+    "titulo": "Hamburguesa Casera",
+    "imagen": "/assets/hamburguesa.jpg",
+    "descripcion": "Sabrosa y jugosa, ideal para una comida rápida.",
+    "pasos": [
+      "Formar las hamburguesas con carne molida y condimentos.",
+      "Cocinar en sartén o parrilla.",
+      "Armar con pan, lechuga, tomate y queso.",
+      "Servir con papas fritas."
+    ]
+  },
+  {
+    "id": 12,
+    "titulo": "Arroz Chaufa Peruano",
+    "imagen": "/assets/chaufa.jpg",
+    "descripcion": "Salteado de arroz con verduras, huevo y salsa de soya.",
+    "pasos": [
+      "Cocinar el arroz y dejar enfriar.",
+      "Saltear verduras con huevo revuelto.",
+      "Agregar el arroz y salsa de soya.",
+      "Servir caliente con cebollín picado."
+    ]
+  },
+  {
+    "id": 13,
+    "titulo": "Tiramisú Clásico",
+    "imagen": "/assets/tiramisu.jpg",
+    "descripcion": "Postre italiano con mascarpone, café y cacao.",
+    "pasos": [
+      "Preparar la crema de mascarpone y huevo.",
+      "Remojar las galletas en café.",
+      "Armar capas de crema y galletas.",
+      "Espolvorear cacao y refrigerar 2 horas."
+    ]
+  }
+]
+

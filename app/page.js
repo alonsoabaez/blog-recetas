@@ -1,46 +1,73 @@
+"use client";
+import { useState } from "react";
 import RecetaConPasos from "../components/RecetaConPasos";
+import HeroSection from "../components/HeroSection";
+import recetasData from "../data/recetas.json";
 
 export default function Home() {
+  const [busqueda, setBusqueda] = useState("");
+
+  // Filtrar recetas según la búsqueda
+  const recetasFiltradas = recetasData.filter((receta) =>
+    receta.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
+    receta.descripcion.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
+  // La primera receta se mantiene como destacada
+  const recetaDestacada = recetasData[0];
+  const otrasRecetas = recetasFiltradas.filter((r) => r.id !== recetaDestacada.id);
+
   return (
     <section>
+      <HeroSection />
+      
       <h2 className="section-title">🥇 Receta Destacada</h2>
-      <RecetaConPasos
-        titulo="Pasta con Salsa de Tomate"
-        imagen="/assets/pasta.jpg"
-        descripcion="Una receta sencilla y deliciosa con tomates frescos y hierbas."
-        pasos={[
-          "Hervir la pasta en agua con sal durante 8 minutos.",
-          "Picar y triturar los tomates frescos.",
-          "Saltear el ajo en aceite de oliva y añadir los tomates.",
-          "Mezclar la pasta con la salsa y espolvorear orégano."
-        ]}
-      />
-
-      <h2 className="section-title">✨ Otras Recetas</h2>
-      <div className="grid">
+      <div className="receta-destacada">
         <RecetaConPasos
-          titulo="Tacos Mexicanos"
-          imagen="/assets/tacos.jpg"
-          descripcion="Tortillas rellenas de carne, verduras y guacamole."
-          pasos={[
-            "Preparar las tortillas.",
-            "Cocinar la carne con condimentos.",
-            "Picar verduras frescas.",
-            "Armar los tacos con guacamole y servir."
-          ]}
-        />
-        <RecetaConPasos
-          titulo="Pizza Margarita"
-          imagen="/assets/pizza.jpg"
-          descripcion="La clásica pizza italiana con tomate, mozzarella y albahaca."
-          pasos={[
-            "Preparar la masa de pizza.",
-            "Untar salsa de tomate.",
-            "Añadir mozzarella fresca.",
-            "Hornear y decorar con albahaca."
-          ]}
+          titulo={recetaDestacada.titulo}
+          imagen={recetaDestacada.imagen}
+          descripcion={recetaDestacada.descripcion}
+          pasos={recetaDestacada.pasos}
+          destacada={true}
         />
       </div>
+
+      <h2 className="section-title">🔍 Buscar Recetas</h2>
+      <input
+        type="text"
+        placeholder="🔎 Busca por nombre o descripción... ej: pizza, tacos, pasta"
+        className="buscador"
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+      />
+
+      <h2 id="todas-las-recetas" className="section-title">
+        ✨ {busqueda ? `Resultados para "${busqueda}"` : 'Todas las Recetas'}
+        <span style={{fontSize: '1rem', color: '#7f8c8d', fontWeight: 'normal', display: 'block', marginTop: '0.5rem'}}>
+          {otrasRecetas.length} receta{otrasRecetas.length !== 1 ? 's' : ''} encontrada{otrasRecetas.length !== 1 ? 's' : ''}
+        </span>
+      </h2>
+      
+      {otrasRecetas.length > 0 ? (
+        <div className="grid">
+          {otrasRecetas.map((receta, index) => (
+            <RecetaConPasos
+              key={receta.id}
+              titulo={receta.titulo}
+              imagen={receta.imagen}
+              descripcion={receta.descripcion}
+              pasos={receta.pasos}
+              index={index}
+            />
+          ))}
+        </div>
+      ) : busqueda ? (
+        <div className="no-resultados">
+          <h3>🔍 No se encontraron recetas</h3>
+          <p>Intenta con otros términos como "pasta", "pizza", "tacos" o "sopa"</p>
+        </div>
+      ) : null}
     </section>
   );
 }
+
