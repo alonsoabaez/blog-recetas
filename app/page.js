@@ -1,73 +1,85 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import RecetaConPasos from "../components/RecetaConPasos";
-import HeroSection from "../components/HeroSection";
-import recetasData from "../data/recetas.json";
 
 export default function Home() {
   const [busqueda, setBusqueda] = useState("");
+  const [recetas, setRecetas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Filtrar recetas según la búsqueda
-  const recetasFiltradas = recetasData.filter((receta) =>
-    receta.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
-    receta.descripcion.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  // Cargar recetas desde la API (BD via Prisma)
+  useEffect(() => {
+    let cancel = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/recetas", { cache: "no-store" });
+        if (!res.ok) throw new Error("Error al cargar recetas");
+        const data = await res.json();
+        if (!cancel) setRecetas(data);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        if (!cancel) setLoading(false);
+      }
+    })();
+    return () => { cancel = true; };
+  }, []);
 
-  // La primera receta se mantiene como destacada
-  const recetaDestacada = recetasData[0];
-  const otrasRecetas = recetasFiltradas.filter((r) => r.id !== recetaDestacada.id);
+  // Filtros de búsqueda
+  const recetasFiltradas = useMemo(() => {
+    const q = busqueda.trim().toLowerCase();
+    if (!q) return recetas;
+    return recetas.filter((r) => r.title?.toLowerCase().includes(q));
+  }, [recetas, busqueda]);
+
+  const recetaDestacada = recetasFiltradas[0] ?? recetas[0];
+  const otrasRecetas = useMemo(() => {
+    if (!recetaDestacada) return recetasFiltradas;
+    return recetasFiltradas.filter((r) => r.id !== recetaDestacada.id);
+  }, [recetasFiltradas, recetaDestacada]);
+
+  if (loading) return <p className="no-resultados">Cargando recetas…</p>;
+  if (!recetas || recetas.length === 0) {
+    return <p className="no-resultados">No hay recetas en la base de datos.</p>;
+  }
 
   return (
     <section>
-      <HeroSection />
-      
       <h2 className="section-title">🥇 Receta Destacada</h2>
-      <div className="receta-destacada">
+      {recetaDestacada && (
         <RecetaConPasos
-          titulo={recetaDestacada.titulo}
-          imagen={recetaDestacada.imagen}
-          descripcion={recetaDestacada.descripcion}
-          pasos={recetaDestacada.pasos}
-          destacada={true}
+          titulo={recetaDestacada.title}
+          imagen={recetaDestacada.image}
+          descripcion={recetaDestacada.description}
+          pasos={recetaDestacada.steps?.map((s) => s.text) ?? []}
         />
-      </div>
+      )}
 
       <h2 className="section-title">🔍 Buscar Recetas</h2>
       <input
         type="text"
-        placeholder="🔎 Busca por nombre o descripción... ej: pizza, tacos, pasta"
+        placeholder="Escribe un nombre, ej: pizza, tacos..."
         className="buscador"
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
       />
 
-      <h2 id="todas-las-recetas" className="section-title">
-        ✨ {busqueda ? `Resultados para "${busqueda}"` : 'Todas las Recetas'}
-        <span style={{fontSize: '1rem', color: '#7f8c8d', fontWeight: 'normal', display: 'block', marginTop: '0.5rem'}}>
-          {otrasRecetas.length} receta{otrasRecetas.length !== 1 ? 's' : ''} encontrada{otrasRecetas.length !== 1 ? 's' : ''}
-        </span>
-      </h2>
-      
+      <h2 className="section-title">✨ Resultados</h2>
       {otrasRecetas.length > 0 ? (
         <div className="grid">
-          {otrasRecetas.map((receta, index) => (
+          {otrasRecetas.map((rec) => (
             <RecetaConPasos
-              key={receta.id}
-              titulo={receta.titulo}
-              imagen={receta.imagen}
-              descripcion={receta.descripcion}
-              pasos={receta.pasos}
-              index={index}
+              key={rec.id}
+              titulo={rec.title}
+              imagen={rec.image}
+              descripcion={rec.description}
+              pasos={rec.steps?.map((s) => s.text) ?? []}
             />
           ))}
         </div>
-      ) : busqueda ? (
-        <div className="no-resultados">
-          <h3>🔍 No se encontraron recetas</h3>
-          <p>Intenta con otros términos como "pasta", "pizza", "tacos" o "sopa"</p>
-        </div>
-      ) : null}
+      ) : (
+        <p className="no-resultados">No se encontraron recetas 😔</p>
+      )}
     </section>
   );
 }
-
