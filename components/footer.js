@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <h3>🍳 Sabores del Mundo</h3>
+          <h3> Sabores del Mundo</h3>
           <p>Tu destino culinario favorito</p>
         </div>
         

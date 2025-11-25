@@ -5,7 +5,7 @@ import path from "path";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Ruta al JSON dentro de tu carpeta /data
+  // Ruta al JSON dentro de la carpeta /data
   const file = path.join(process.cwd(), "data", "recetas.json");
 
   // Leer y parsear el archivo
@@ -30,12 +30,12 @@ async function main() {
     });
   }
 
-  console.log(`✅ Seed completado: ${recetas.length} recetas cargadas correctamente`);
+  console.log(`Seed completado: ${recetas.length} recetas cargadas correctamente`);
 }
 
 main()
   .catch((e) => {
-    console.error("❌ Error en seed:", e);
+    console.error("Error en seed:", e);
     process.exit(1);
   })
   .finally(async () => {

@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-content">
-        <h1>🍳 Sabores del Mundo</h1>
+        <h1> Sabores del Mundo</h1>
         <p className="header-subtitle">Descubre, cocina y disfruta</p>
       </div>
       <nav>

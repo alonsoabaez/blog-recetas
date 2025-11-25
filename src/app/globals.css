@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
+/* Paleta de colores */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b0f19;
+  --foreground: #e8ecf3;
+  --card-bg: #141a2a;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
 }
 
+/* Integración con Tailwind */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
+/* Modo oscuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #06070d;
+    --foreground: #f5f7fa;
+    --card-bg: #0f141f;
+    --accent: #3b82f6;
   }
 }
 
+/* Estilos globales */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* Títulos */
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--foreground);
+}
+
+.section-title {
+  color: var(--accent);
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Tarjetas */
+.card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.55);
+}
+
+.card-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+/* Lista de pasos */
+.pasos-lista .paso-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.6rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+/* Buscador */
+.buscador {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  color: var(--foreground);
+  border: 2px solid var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.buscador:focus {
+  outline: none;
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+/* Grid responsivo */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mensaje sin resultados */
+.no-resultados {
+  text-align: center;
+  opacity: 0.7;
+  color: var(--foreground);
+  margin-top: 2rem;
+}
+
+/* Footer */
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }

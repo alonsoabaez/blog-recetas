@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-/* 🎨 Variables CSS */
+/*  Variables CSS */
 :root {
-  --primary-color: #e74c3c;
-  --primary-dark: #c0392b;
-  --secondary-color: #f39c12;
+  --primary-color: #2b0cd7;
+  --primary-dark: #2c2b47;
+  --secondary-color: #ffffff;
   --accent-color: #3498db;
   --success-color: #27ae60;
   --text-primary: #2c3e50;
@@ -19,7 +19,7 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 🎨 Estilos globales */
+/* Estilos globales */
 * {
   box-sizing: border-box;
 }
@@ -85,7 +85,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* 🔻 Footer */
+/*  Footer */
 .footer {
   text-align: center;
   padding: 0.75rem;
@@ -105,7 +105,7 @@ body {
   color: white;
 }
 
-/* 📌 Secciones */
+/*  Secciones */
 .section-title {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
@@ -128,7 +128,7 @@ body {
   border-radius: 2px;
 }
 
-/* 🔍 Buscador */
+/*  Buscador */
 .buscador {
   width: 100%;
   max-width: 500px;
@@ -155,7 +155,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* 🃏 Tarjetas */
+/*  Tarjetas */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -250,7 +250,7 @@ body {
   accent-color: var(--success-color);
 }
 
-/* 🚫 Sin resultados */
+/*  Sin resultados */
 .no-resultados {
   text-align: center;
   font-size: 1.2rem;
@@ -329,9 +329,9 @@ body {
 .card:nth-child(3n) {
   animation-delay: 0.2s;
 }
-/* 🎯 Estilos adicionales para componentes mejorados */
+/*  Estilos adicionales para componentes mejorados */
 
-/* 📊 Estadísticas de receta */
+/*  Estadísticas de receta */
 .receta-stats {
   display: flex;
   gap: 1rem;
@@ -355,7 +355,7 @@ body {
   font-size: 1rem;
 }
 
-/* 📈 Barra de progreso */
+/*  Barra de progreso */
 .progreso-bar {
   width: 100%;
   height: 6px;
@@ -372,7 +372,7 @@ body {
   transition: width 0.5s ease;
 }
 
-/* 🎯 Overlay de progreso en imagen */
+/*  Overlay de progreso en imagen */
 .card-image-container {
   position: relative;
   overflow: hidden;
@@ -400,7 +400,7 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 🔽 Toggle de pasos */
+/*  Toggle de pasos */
 .toggle-pasos {
   background: none;
   border: none;
@@ -418,7 +418,7 @@ body {
   transform: scale(1.1);
 }
 
-/* 📝 Pasos mejorados */
+/*  Pasos mejorados */
 .paso-item {
   position: relative;
   transition: var(--transition);
@@ -472,7 +472,7 @@ body {
   cursor: pointer;
 }
 
-/* 🎉 Receta completada */
+/*  Receta completada */
 .receta-completada {
   background: linear-gradient(135deg, var(--success-color), #2ecc71);
   color: white;
@@ -498,7 +498,7 @@ body {
   }
 }
 
-/* 🌟 Mejoras para receta destacada */
+/*  Mejoras para receta destacada */
 .receta-destacada .card-body h2 {
   color: var(--primary-color);
   font-size: 1.8rem;
@@ -509,7 +509,7 @@ body {
   color: var(--primary-color);
 }
 
-/* 📱 Responsive adicional */
+/*  Responsive adicional */
 @media (max-width: 768px) {
   .receta-stats {
     justify-content: center;
@@ -528,7 +528,7 @@ body {
   }
 }
 
-/* ✨ Animaciones adicionales */
+/*  Animaciones adicionales */
 .pasos-lista {
   animation: slideDown 0.4s ease-out;
 }
@@ -544,7 +544,7 @@ body {
   }
 }
 
-/* 🎨 Efectos hover mejorados */
+/*  Efectos hover mejorados */
 .card:hover .card-img {
   filter: brightness(1.1);
 }
@@ -585,7 +585,7 @@ body {
   .header-subtitle {
     font-size: 0.8rem;
   }
-}/* 🔻
+}/* 
  Footer mejorado */
 .footer {
   background: linear-gradient(135deg, var(--text-primary) 0%, #34495e 100%);
@@ -749,7 +749,7 @@ Section */
   letter-spacing: 1px;
 }
 
-/* 🎈 Decoraciones flotantes */
+/*  Decoraciones flotantes */
 .hero-decoration {
   position: absolute;
   top: 0;
@@ -856,7 +856,7 @@ Section */
     gap: 1rem;
   }
 }/*
- 🔘 Botón de navegación */
+  Botón de navegación */
 .nav-button {
   background: none;
   border: none;
