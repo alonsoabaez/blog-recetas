@@ -22,39 +22,46 @@ export default function Home() {
         if (!cancel) setLoading(false);
       }
     })();
-    return () => { cancel = true; };
+    return () => {
+      cancel = true;
+    };
   }, []);
 
-  // Filtros de búsqueda
   const recetasFiltradas = useMemo(() => {
     const q = busqueda.trim().toLowerCase();
     if (!q) return recetas;
-    return recetas.filter((r) => r.title?.toLowerCase().includes(q));
-  }, [recetas, busqueda]);
 
-  const recetaDestacada = recetasFiltradas[0] ?? recetas[0];
-  const otrasRecetas = useMemo(() => {
-    if (!recetaDestacada) return recetasFiltradas;
-    return recetasFiltradas.filter((r) => r.id !== recetaDestacada.id);
-  }, [recetasFiltradas, recetaDestacada]);
+    return recetas.filter((r) => {
+      const titulo = r.title?.toLowerCase() ?? "";
+      const descripcion = r.description?.toLowerCase() ?? "";
+      const categoria = r.category?.toLowerCase() ?? "";
+      return (
+        titulo.includes(q) ||
+        descripcion.includes(q) ||
+        categoria.includes(q)
+      );
+    });
+  }, [recetas, busqueda]);
 
   if (loading) return <p className="no-resultados">Cargando recetas…</p>;
   if (!recetas || recetas.length === 0) {
     return <p className="no-resultados">No hay recetas en la base de datos.</p>;
   }
 
+  // No mostrar destacada si no hay resultados filtrados
+  const recetaDestacada =
+    busqueda.trim() && recetasFiltradas.length === 0
+      ? null
+      : recetasFiltradas[0];
+
+  const otrasRecetas =
+    recetaDestacada && recetasFiltradas.length > 1
+      ? recetasFiltradas.slice(1)
+      : recetasFiltradas;
+
   return (
     <section>
-      <h2 className="section-title">🥇 Receta Destacada</h2>
-      {recetaDestacada && (
-        <RecetaConPasos
-          titulo={recetaDestacada.title}
-          imagen={recetaDestacada.image}
-          descripcion={recetaDestacada.description}
-          pasos={recetaDestacada.steps?.map((s) => s.text) ?? []}
-        />
-      )}
-
+      {/* 🔍 BUSCADOR PRIMERO */}
       <h2 className="section-title">🔍 Buscar Recetas</h2>
       <input
         type="text"
@@ -64,6 +71,20 @@ export default function Home() {
         onChange={(e) => setBusqueda(e.target.value)}
       />
 
+      {/* 🥇 RECETA DESTACADA SOLO SI HAY */}
+      {recetaDestacada && (
+        <>
+          <h2 className="section-title">🥇 Receta Destacada</h2>
+          <RecetaConPasos
+            titulo={recetaDestacada.title}
+            imagen={recetaDestacada.image}
+            descripcion={recetaDestacada.description}
+            pasos={recetaDestacada.steps?.map((s) => s.text) ?? []}
+          />
+        </>
+      )}
+
+      {/* ✨ RESULTADOS */}
       <h2 className="section-title">✨ Resultados</h2>
       {otrasRecetas.length > 0 ? (
         <div className="grid">
@@ -83,3 +104,5 @@ export default function Home() {
     </section>
   );
 }
+
+
