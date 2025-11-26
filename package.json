@@ -7,7 +7,6 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
@@ -16,6 +15,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "form-data": "^4.0.5",
     "next": "15.5.4",
     "prisma": "^6.19.0",
     "react": "19.1.0",
@@ -31,4 +31,3 @@
     "typescript": "^5"
   }
 }
-
