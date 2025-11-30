@@ -11,6 +11,7 @@ export default function Panel() {
   const [mensaje, setMensaje] = useState("");
 
   const addStep = () => setSteps([...steps, ""]);
+
   const updateStep = (index, value) => {
     const copy = [...steps];
     copy[index] = value;
@@ -20,6 +21,7 @@ export default function Panel() {
   const handleImage = (e) => {
     const f = e.target.files?.[0] ?? null;
     setImageFile(f);
+
     if (f) {
       const url = URL.createObjectURL(f);
       setImagePreview(url);
@@ -31,8 +33,17 @@ export default function Panel() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMensaje("");
-    if (!title.trim()) return setMensaje("El título es obligatorio");
-    if (!steps.some((s) => s && s.trim())) return setMensaje("Al menos un paso válido");
+
+    if (!title.trim()) {
+      setMensaje("El título es obligatorio");
+      return;
+    }
+
+    if (!steps.some((s) => s && s.trim())) {
+      setMensaje("Al menos un paso válido");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -40,7 +51,9 @@ export default function Panel() {
       formData.append("title", title);
       formData.append("description", description);
       formData.append("steps", JSON.stringify(steps.filter(Boolean)));
-      if (imageFile) formData.append("image", imageFile);
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
 
       const res = await fetch("/api/recetas", {
         method: "POST",
@@ -52,9 +65,10 @@ export default function Panel() {
         throw new Error(text || `HTTP ${res.status}`);
       }
 
-      const created = await res.json();
+      await res.json();
+
       setMensaje("✅ Receta creada correctamente");
-      // limpiar
+      // Limpiar formulario
       setTitle("");
       setDescription("");
       setImageFile(null);
@@ -90,10 +104,19 @@ export default function Panel() {
         />
 
         <label>Imagen</label>
-        <input type="file" accept="image/*" onChange={handleImage} />
+        <input
+          type="file"
+          name="image"          // 👈 nombre alineado con el backend
+          accept="image/*"
+          onChange={handleImage}
+        />
         {imagePreview && (
           <div style={{ marginTop: 8 }}>
-            <img src={imagePreview} alt="preview" style={{ width: 180, borderRadius: 8 }} />
+            <img
+              src={imagePreview}
+              alt="preview"
+              style={{ width: 180, borderRadius: 8 }}
+            />
           </div>
         )}
 
@@ -115,7 +138,6 @@ export default function Panel() {
           </button>
         </div>
 
-        
         <div style={{ marginTop: 20 }}>
           <button type="submit" className="btn-primary" disabled={loading}>
             {loading ? "Guardando..." : "Crear Receta ✨"}

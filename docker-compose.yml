@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: recetas_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: recetasdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - blog-recetas_postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: recetas_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+
+volumes:
+  blog-recetas_postgres_data:
+
+
+
